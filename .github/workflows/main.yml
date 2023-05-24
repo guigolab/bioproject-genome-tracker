@@ -42,8 +42,6 @@ jobs:
           ./datasets summary genome accession ${{env.PROJECT_ACCESSION}} ${{env.DATASET_EXTRA_ARGS}} | ./dataformat tsv genome --fields ${{env.TSV_FIELDS}} >> "$new_file"
           echo "new_rows=$(( $(wc -l < "$new_file") - $(wc -l < "$existing_file") ))" >> "$GITHUB_ENV"
           
-      - name: Check if the file exists and append new rows
-        run: |
           if [ ! -s "$existing_file" ]; then
             cat "$new_file" >> "$existing_file"
           else
