@@ -1,0 +1,59 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 0 * * 0'
+
+
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Environment Variables from Dotenv
+        uses: c-py/action-dotenv-to-setenv@v4
+      
+      - name: Install required NCBI packages
+        run: |
+          #retrieve packages and set permissions
+          curl -O 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/dataformat'
+          curl -O 'https://ftp.ncbi.nlm.nih.gov/pub/datasets/command-line/v2/linux-amd64/datasets'
+          chmod +x datasets dataformat
+          
+      - name: Run query and get new rows
+        run: |
+          existing_file="./matrices/assemblies.tsv"
+          new_file="output.tsv"
+          
+          #get tsv
+          ./datasets summary genome accession ${{env.PROJECT_ACCESSION}} ${{env.DATASET_EXTRA_ARGS}} | ./dataformat tsv genome --fields ${{env.TSV_FIELDS}} >> "$new_file"
+          echo "new_rows=$(( $(wc -l < "$new_file") - $(wc -l < "$existing_file") ))" >> "$GITHUB_ENV"
+          
+      - name: Check if the file exists and append new rows
+        run: |
+          if [ ! -s "$existing_file" ]; then
+            cat "$new_file" >> "$existing_file"
+          else
+            # Compare existing and new files based on the first column (assuming the first column is the unique identifier)
+            # Append new rows to the existing file and print the number of rows added
+            awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_file" "$new_file" >> "$existing_file" 2>/dev/null | wc -l        
+          fi
+          
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Added ${{ env.new_rows }} new row(s)"
