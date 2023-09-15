@@ -1,3 +1,12 @@
+function url_exists(){
+local url="$1"
+if curl -s --head "$url" | head -n 1 | grep -q "HTTP/1.1 404"; then
+  return 1 #url returns 404
+else
+  return 0 #url exists
+fi
+}
+
 name: CI
 
 # Controls when the workflow will run
@@ -52,8 +61,16 @@ jobs:
           else
 
             awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
-            awk -F'\t' -v OFS='\t' '{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true"} 1' "$new_assemblies" >> "$existing_assemblies"
-          
+           
+            awk -F'\t' -v OFS='\t' '{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true"} 1' "$new_assemblies" | while
+            read accession acc_name organism url_download
+            do
+              check_exists=$(url_exists "$url_download")
+              if [[ "$check_exists" -eq 0  ]]; then 
+              	echo -e "$accession\t$acc_name\t$organism\t$url_download\n" >> "$existing_assemblies"
+              fi
+            done
+            
           fi
 
           # Count new rows and set the environment variable
