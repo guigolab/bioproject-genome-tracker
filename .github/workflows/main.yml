@@ -76,7 +76,7 @@ jobs:
               	echo -e "$accession\t$ass_name\t$organism_name\t$taxid\t$url_download\n" >> "$existing_assemblies"
               fi
             done
-            sort k3 $existing_assemblies
+            sort -k3 $existing_assemblies
           fi
 
           # Count new rows and set the environment variable
