@@ -42,6 +42,7 @@ jobs:
 
           # Get TSV from dataset
           ./datasets summary genome accession ${{env.PROJECT_ACCESSION}} ${{env.DATASET_EXTRA_ARGS}} | ./dataformat tsv genome --fields ${{env.TSV_FIELDS}} >> "$ncbi_assemblies"
+          
           function url_exists(){
             local url="$1"
             if curl -s --head "$url" | head -n 1 | grep -q "HTTP/1.1 404"; then
@@ -52,32 +53,24 @@ jobs:
           }
           
           if [ ! -s "$existing_assemblies" ]; then
-
             cat "$ncbi_assemblies" >> "$new_assemblies"
-            awk -F'\t' -v OFS='\t' '{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true&gzip=true"} 1' "$new_assemblies" | while
-            read accession ass_name organism_name taxid url_download
-            do
-              check_exists=$(url_exists "$url_download")
-              if [[ "$check_exists" -eq 0  ]]; then 
-              	echo -e "$accession\t$ass_name\t$organism_name\t$taxid\t$url_download\n" >> "$existing_assemblies"
-              fi
-            done
             sed -i "1s/$/\t$column_name/" "$existing_assemblies"
-
           else
-
             awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
-           
-            awk -F'\t' -v OFS='\t' '{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true&gzip=true"} 1' "$new_assemblies" | while
-            read accession ass_name organism_name taxid url_download
-            do
-              check_exists=$(url_exists "$url_download")
-              if [[ "$check_exists" -eq 0  ]]; then 
-              	echo -e "$accession\t$ass_name\t$organism_name\t$taxid\t$url_download\n" >> "$existing_assemblies"
-              fi
-            done
-            sort -k3 $existing_assemblies
           fi
+
+          # Process the input file and create the output file
+          while IFS=$'\t' read -r col1 rest_of_line; do
+            if [[ $col1 == "Assembly Accession"]]; then
+              continue
+            fi
+              url="https://www.ebi.ac.uk/ena/browser/api/fasta/$col1?download=true"  # Modify this URL format as needed
+              if url_exists "$url"; then
+                  url_to_add="$url&gzip=true"
+                  echo -e "$col1\t$rest_of_line\t$url_to_add" >> "$existing_assemblies"
+              fi
+          done < "$new_assemblies"
+          sort -k3 $existing_assemblies
 
           # Count new rows and set the environment variable
           new_rows=$(wc -l < "$new_assemblies")
