@@ -45,6 +45,7 @@ jobs:
           
           function url_exists(){
             local url="$1"
+            echo "$url"
             if curl -s --head "$url" | head -n 1 | grep -q "HTTP/1.1 404"; then
               return 1 #url returns 404
             else
@@ -58,7 +59,10 @@ jobs:
           else
             awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
           fi
-
+          
+          # Debug: Print some lines from the new_assemblies file
+          head -n 5 "$new_assemblies"
+          
           # Process the input file and create the output file
           while IFS=$'\t' read -r col1 rest_of_line; do
             if [[ "$col1" == "Assembly Accession" ]]; then
@@ -67,6 +71,7 @@ jobs:
               url="https://www.ebi.ac.uk/ena/browser/api/fasta/$col1?download=true"  # Modify this URL format as needed
               if url_exists "$url"; then
                   url_to_add="$url&gzip=true"
+                  echo "$url_to_add"
                   echo -e "$col1\t$rest_of_line\t$url_to_add" >> "$existing_assemblies"
               fi
           done < "$new_assemblies"
