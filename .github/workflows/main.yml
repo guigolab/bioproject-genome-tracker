@@ -62,13 +62,13 @@ jobs:
           
           # Process the input file and create the output file
           while IFS=$'\t' read -r col1 rest_of_line; do
-          if [[ "$added_rows" -ge 200 ]]; then
-            break
-          fi
-          if [[ "$col1" == "Assembly Accession" ]]; then
-            continue
-          fi
-            url="https://www.ebi.ac.uk/ena/browser/api/fasta/$col1?download=true"  # Modify this URL format as needed
+            if [[ "$added_rows" -ge 200 ]]; then
+              break
+            fi
+            if [[ "$col1" == "Assembly Accession" ]]; then
+              continue
+            fi
+            url="https://www.ebi.ac.uk/ena/browser/api/fasta/$col1?download=true"
             if url_exists "$url"; then
                 url_to_add="$url&gzip=true"
                 echo "$url_to_add"
