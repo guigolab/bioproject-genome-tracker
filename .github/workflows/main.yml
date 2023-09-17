@@ -58,7 +58,7 @@ jobs:
             awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
           fi
 
-          added_rows = 0
+          added_rows=0
           
           # Process the input file and create the output file
           while IFS=$'\t' read -r col1 rest_of_line; do
