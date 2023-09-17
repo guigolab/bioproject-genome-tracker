@@ -62,7 +62,7 @@ jobs:
           
           # Process the input file and create the output file
           while IFS=$'\t' read -r col1 rest_of_line; do
-            if[["$added_rows"==200]] #add up to 200 rows
+            if[["$added_rows"==200]]
             then
               break
             fi
