@@ -4,7 +4,9 @@ name: CI
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 0 * * *'
+    - cron:  '0 0 * * 0'
+
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,42 +43,18 @@ jobs:
           # Get TSV from dataset
           ./datasets summary genome accession ${{env.PROJECT_ACCESSION}} ${{env.DATASET_EXTRA_ARGS}} | ./dataformat tsv genome --fields ${{env.TSV_FIELDS}} >> "$ncbi_assemblies"
           
-          function url_exists(){
-            local url="$1"
-            echo "$url"
-            if curl -s -m 60 --head "$url" | head -n 1 | grep -q "HTTP/1.1 404"; then
-              return 1 #url returns 404
-            else
-              return 0 #url exists
-            fi
-          }
-          
           if [ ! -s "$existing_assemblies" ]; then
-            cat "$ncbi_assemblies" >> "$new_assemblies"
-            sed -i "1s/$/\t$column_name/" "$existing_assemblies"
-          else
-            awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
-          fi
 
-          added_rows=0
+            cat "$ncbi_assemblies" >> "$new_assemblies"
+            awk -F'\t' -v OFS='\t' 'NR>1{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true&gzip=true"} 1' "$new_assemblies" >> "$existing_assemblies"
+            sed -i "1s/$/\t$column_name/" "$existing_assemblies"
+
+          else
+
+            awk -F'\t' 'NR==FNR{a[$1];next} !($1 in a)' "$existing_assemblies" "$ncbi_assemblies" >> "$new_assemblies"
+            awk -F'\t' -v OFS='\t' '{new_value=$1; $(NF+1)="https://www.ebi.ac.uk/ena/browser/api/fasta/" new_value "?download=true&gzip=true"} 1' "$new_assemblies" >> "$existing_assemblies"
           
-          # Process the input file and create the output file
-          while IFS=$'\t' read -r col1 rest_of_line; do
-            if [[ "$added_rows" -ge 200 ]]; then
-              break
-            fi
-            if [[ "$col1" == "Assembly Accession" ]]; then
-              continue
-            fi
-            url="https://www.ebi.ac.uk/ena/browser/api/fasta/$col1?download=true"
-            if url_exists "$url"; then
-                url_to_add="$url&gzip=true"
-                echo "$url_to_add"
-                echo -e "$col1\t$rest_of_line\t$url_to_add" >> "$existing_assemblies"
-                ((added_rows++))
-            fi
-          done < "$new_assemblies"
-          sort -k3 $existing_assemblies
+          fi
 
           # Count new rows and set the environment variable
           new_rows=$(wc -l < "$new_assemblies")
