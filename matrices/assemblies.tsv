@@ -1092,3 +1092,5 @@ GCA_963169125.1	drHumLupu1.1	Humulus lupulus	3486	https://www.ebi.ac.uk/ena/brow
 GCA_914725855.2	fThuAlb1.2	Thunnus albacares	8236	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_914725855.2?download=true&gzip=true
 GCA_905147785.2	ilThyBati1.2	Thyatira batis	721163	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_905147785.2?download=true&gzip=true
 GCA_028564815.2	mEubGla1.1.hap2.+ XY	Eubalaena glacialis	27606	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_028564815.2?download=true&gzip=true
+GCA_033807715.1	fColSai1.1	Cololabis saira	129043	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_033807715.1?download=true&gzip=true
+GCA_033807575.1	ilCydPomo1	Cydia pomonella	82600	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_033807575.1?download=true&gzip=true
