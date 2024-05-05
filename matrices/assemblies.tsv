@@ -1464,3 +1464,5 @@ GCA_038355195.1	fOsmMor3.pri	Osmerus mordax	8014	https://www.ebi.ac.uk/ena/brows
 GCA_964026355.1	jsPseHaec1.1	Pseudorhiza haeckeli	880241	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_964026355.1?download=true&gzip=true
 GCA_038363225.1	mArtInt1.hap2	Artibeus intermedius	51014	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_038363225.1?download=true&gzip=true
 GCA_038363175.1	mArtLit.hap2	Artibeus lituratus	27634	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_038363175.1?download=true&gzip=true
+GCA_964035015.1	jaCorRubr1.1	Corallium rubrum	142104	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_964035015.1?download=true&gzip=true
+GCA_038501925.1	aXenPet1.paternal.cur	Xenopus petersii	288555	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_038501925.1?download=true&gzip=true
