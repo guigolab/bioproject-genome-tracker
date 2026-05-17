@@ -4486,3 +4486,15 @@ GCA_032164245.2	rSteOdo2_p1.1	Sternotherus odoratus	142480	https://www.ebi.ac.uk
 GCA_964205215.1	jaStyPist1.1	Stylophora pistillata	50429	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_964205215.1?download=true&gzip=true
 GCA_965152355.2	daSyrVulg1.hap1.2	Syringa vulgaris	34270	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_965152355.2?download=true&gzip=true
 GCA_965263735.2	drTroVert1.hap1.2	Trocdaris verticillata	1170862	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_965263735.2?download=true&gzip=true
+GCA_907164435.1	mAcoDim1_REL_1905	Acomys dimidiatus	60744	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_907164435.1?download=true&gzip=true
+GCA_907164505.1	mAcoKem2_REL_1905	Acomys kempi	83762	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_907164505.1?download=true&gzip=true
+GCA_907169655.1	mAcoPer2_REL_1905	Acomys percivali	83527	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_907169655.1?download=true&gzip=true
+GCA_027563665.2	DD_ASM_mAP_20210503	Antrozous pallidus	9440	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_027563665.2?download=true&gzip=true
+GCA_057427935.1	bDumCar1.hap1	Dumetella carolinensis	111981	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_057427935.1?download=true&gzip=true
+GCA_977035975.1	piEupOcto1.1	Euplotes octocarinatus	2716877	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_977035975.1?download=true&gzip=true
+GCA_977966355.1	piParDeut1.1	Paramecium deuterobursaria	3029279	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_977966355.1?download=true&gzip=true
+GCA_973845125.1	piParNeph1.1	Paramecium nephridiatum	109353	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_973845125.1?download=true&gzip=true
+GCA_977966395.1	piParTeta1.1	Paramecium tetratobursaria	3029280	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_977966395.1?download=true&gzip=true
+GCA_057428315.1	mRhiBla1.hap2	Rhinolophus blasii	519037	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_057428315.1?download=true&gzip=true
+GCA_057427945.1	mRhiDar1.hap1	Rhinolophus darlingi	49443	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_057427945.1?download=true&gzip=true
+GCA_057381485.1	bSpiTri1.hap2	Spinus tristis	54773	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_057381485.1?download=true&gzip=true
