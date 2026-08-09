@@ -5069,3 +5069,17 @@ GCA_059550175.1	fLutSeb1.hap1.cur.20230516	Lutjanus sebae	232192	https://www.ebi
 GCA_059550225.1	fLutVit1.hap2.cur.20230825	Lutjanus vitta	379402	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059550225.1?download=true&gzip=true
 GCA_058248155.2	rBotPic1.hap2	Bothrops pictus	133440	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_058248155.2?download=true&gzip=true
 GCA_987106695.1	ilSciLuci1.hap1.1	Sciota lucipetella	2561711	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_987106695.1?download=true&gzip=true
+GCA_059801895.1	bColDeg1.hap1	Columba delegorguei	2953368	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059801895.1?download=true&gzip=true
+GCA_059801445.1	bColEve1.hap1	Columba eversmanni	2953369	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059801445.1?download=true&gzip=true
+GCA_059749105.1	mEidDup1.hap2	Eidolon dupreanum	58063	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059749105.1?download=true&gzip=true
+GCA_059746195.1	xcIllIlle1.hap1	Illex illecebrosus	6629	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059746195.1?download=true&gzip=true
+GCA_987195895.1	bLulArb1.hap1.1	Lullula arborea	215315	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_987195895.1?download=true&gzip=true
+GCA_057930395.2	ASM5793039v2	Lutjanus quinquelineatus	396789	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_057930395.2?download=true&gzip=true
+GCA_059802365.1	bOenCap1.hap1	Oena capensis	115679	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059802365.1?download=true&gzip=true
+GCA_059801495.1	bPamSan1.hap1	Pampusana sanctaecrucis	2953435	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059801495.1?download=true&gzip=true
+GCA_059802585.1	bPatFas27.hap2	Patagioenas fasciata x Patagioenas picazuro	3711734	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059802585.1?download=true&gzip=true
+GCA_059746265.1	fPsiMai1.hap1	Psilogobius mainlandi	2108433	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059746265.1?download=true&gzip=true
+GCA_059802175.1	mRouMad1.hap2	Rousettus madagascariensis	77223	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059802175.1?download=true&gzip=true
+GCA_059801415.1	bTreVer1.hap2	Treron vernans	115702	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059801415.1?download=true&gzip=true
+GCA_059802565.1	bZenMac1.hap2	Zenaida macroura	47245	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059802565.1?download=true&gzip=true
+GCA_059801735.1	bZenMel1.hap2	Zenaida meloda	115710	https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_059801735.1?download=true&gzip=true
